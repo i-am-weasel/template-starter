@@ -11,8 +11,8 @@ services:
       # https://code.visualstudio.com/remote/advancedcontainers/improve-performance
       - bash_history:/commandhistory
       - node_modules:/workspace/node_modules
-      - pnpm_store:/home/$USER/.pnpm-store
-      - vscode_extensions:/home/$USER/a.vscode-server/extensions
+      - pnpm_store:/home/$USERNAME/.pnpm-store
+      - vscode_extensions:/home/$USERNAME/.vscode-server/extensions
     env_file: ../.env
     command: sleep infinity
 
