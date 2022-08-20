@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      args:
+        USERNAME: node
+        VARIANT: 16
+    volumes:
+      - ..:/workspace:cached
+      # https://code.visualstudio.com/remote/advancedcontainers/improve-performance
+      - bash_history:/commandhistory
+      - node_modules:/workspace/node_modules
+      - pnpm_store:/home/$USER/.pnpm-store
+      - vscode_extensions:/home/$USER/a.vscode-server/extensions
+    env_file: ../.env
+    command: sleep infinity
+
+volumes:
+  bash_history:
+  node_modules:
+  pnpm_store:
+  vscode_extensions:

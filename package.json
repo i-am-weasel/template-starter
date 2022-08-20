@@ -1,0 +1,24 @@
+{
+  "name": "project-name",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@7.9.0",
+  "description": "Project description",
+  "scripts": {
+    "build": "pnpm --recursive build",
+    "dev": "pnpm --parallel dev",
+    "lint:fix": "nr lint --fix --cache",
+    "lint": "eslint . --cache",
+    "up": "taze major -Ir"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.26.1",
+    "@types/node": "^18.7.6",
+    "eslint": "^8.22.0",
+    "tsx": "^3.8.2",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.8.9",
+    "vite": "^3.0.9",
+    "vitest": "^0.22.1"
+  }
+}

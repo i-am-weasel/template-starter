@@ -1,0 +1,24 @@
+{
+  "name": "Node.js & TypeScript",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "postCreateCommand": "sudo chown node node_modules; ni",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "vue.volar"
+      ],
+      "settings": {
+        "dotfiles.repository": "i-am-weasel/devcontainer-dotfiles",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "editor.formatOnSave": false,
+        "editor.linkedEditing": true
+      }
+    }
+  }
+}
