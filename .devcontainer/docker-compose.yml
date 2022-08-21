@@ -6,6 +6,7 @@ services:
       args:
         USERNAME: node
         VARIANT: 16
+    container_name: app
     volumes:
       - ..:/workspace:cached
       # https://code.visualstudio.com/remote/advancedcontainers/improve-performance
