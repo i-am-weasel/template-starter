@@ -14,7 +14,8 @@
       ]
     },
     "types": [
-      "vite/client"
+      "vite/client",
+      "vue/ref-macros"
     ],
     "useDefineForClassFields": true
   },
