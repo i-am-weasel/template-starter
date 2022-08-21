@@ -9,40 +9,35 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 #   apt-get update && \
 #   apt-get -y install --no-install-recommends <your-package-list-here>
 
-ARG USERNAME=node
+ARG USERNAME
 
 # https://code.visualstudio.com/remote/advancedcontainers/persist-bash-history
 ENV PROMPT_COMMAND="history -a"
 ENV HISTFILE=/commandhistory/.bash_history
+
 RUN \
   mkdir /commandhistory && \
   touch /commandhistory/.bash_history && \
-  chown -R $USERNAME /commandhistory
+  chown -R $USERNAME /commandhistory && \
+  # https://code.visualstudio.com/remote/advancedcontainers/avoid-extension-reinstalls
+  mkdir -p /home/$USERNAME/.vscode-server/extensions && \
+  mkdir -p /home/$USERNAME/.local/share/pnpm/store && \
+  chown -R $USERNAME /home/$USERNAME/.vscode-server /home/$USERNAME/.local/share
 
 # Change user from root to node.
 USER $USERNAME
 
-# https://code.visualstudio.com/remote/advancedcontainers/improve-performance
 RUN \
-  mkdir /home/$USERNAME/.pnpm-store && \
-  mkdir -p /home/$USERNAME/.vscode-server/extensions && \
-  chown -R $USERNAME /home/$USERNAME/.pnpm-store /home/$USERNAME/.vscode-server
-
-# https://github.com/zsh-users/antigen
-RUN \
+  # https://github.com/zsh-users/antigen
   curl -L git.io/antigen >/home/$USERNAME/antigen.zsh && \
   echo "source ~/.aliases" >>/home/$USERNAME/.zshrc && \
   echo "source ~/antigen.zsh" >>/home/$USERNAME/.zshrc && \
-  echo "antigen init ~/dotfiles/.antigenrc" >>/home/$USERNAME/.zshrc
-
-# Install global npm packages
-RUN \
+  echo "antigen init ~/.antigenrc" >>/home/$USERNAME/.zshrc && \
+  # Install global npm packages
   npm install -g \
   # https://github.com/antfu/ni
   @antfu/ni \
   # https://pnpm.io/
-  pnpm
-
-# Set pnpm store directory, this is where pnpm will store packages
-# instead of the default /workspace/.pnpm-store.
-RUN pnpm config set store-dir /home/$USERNAME/.pnpm-store
+  pnpm && \
+  # https://pnpm.io/npmrc#store-dir
+  pnpm config set store-dir /home/$USERNAME/.local/share/pnpm/store

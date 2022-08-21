@@ -4,7 +4,7 @@
   "service": "app",
   "workspaceFolder": "/workspace",
   "remoteUser": "node",
-  "postCreateCommand": "sudo chown node node_modules; ni",
+  "postCreateCommand": "sudo chown node node_modules; ni --prefer-offline",
   "customizations": {
     "vscode": {
       "extensions": [

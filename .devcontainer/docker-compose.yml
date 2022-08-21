@@ -11,11 +11,14 @@ services:
       # https://code.visualstudio.com/remote/advancedcontainers/improve-performance
       - bash_history:/commandhistory
       - node_modules:/workspace/node_modules
-      - vscode_extensions:/home/$USERNAME/.vscode-server/extensions
+      # The username must be here too if USERNAME has been changed above
+      - pnpm_store:/home/node/.local/share/pnpm/store
+      - vscode_extensions:/home/node/.vscode-server/extensions
     env_file: ../.env
     command: sleep infinity
 
 volumes:
   bash_history:
   node_modules:
+  pnpm_store:
   vscode_extensions:
