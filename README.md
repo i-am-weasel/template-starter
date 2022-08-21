@@ -12,4 +12,8 @@ your local machine or o GitHub codespaces.
 
 - update `COMPOSE_PROJECT_NAME` variable,
 - update `Template starter` expression,
-- update package name in `package.json` files,
+- update package name in `package.json` files.
+
+[dotfiles] is used in this reposiory in devcontainer.
+
+[dotfiles]: https://github.com/i-am-weasel/devcontainer-dotfiles
