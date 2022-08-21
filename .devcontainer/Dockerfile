@@ -31,6 +31,7 @@ RUN \
 # https://github.com/zsh-users/antigen
 RUN \
   curl -L git.io/antigen >/home/$USERNAME/antigen.zsh && \
+  echo "source ~/.aliases" >>/home/$USERNAME/.zshrc && \
   echo "source ~/antigen.zsh" >>/home/$USERNAME/.zshrc && \
   echo "antigen init ~/dotfiles/.antigenrc" >>/home/$USERNAME/.zshrc
 
